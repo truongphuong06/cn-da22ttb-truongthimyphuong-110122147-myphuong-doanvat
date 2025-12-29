@@ -1,0 +1,498 @@
+{
+	"info": {
+		"_postman_id": "fashion-shop-api",
+		"name": "Fashion Shop API Collection",
+		"description": "Complete API collection for fashion e-commerce website",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost/Web/api",
+			"type": "string"
+		},
+		{
+			"key": "session_id",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "1. Product Management",
+			"item": [
+				{
+					"name": "GET All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/products?page=1&per_page=20",
+							"host": ["{{base_url}}"],
+							"path": ["products"],
+							"query": [
+								{"key": "page", "value": "1"},
+								{"key": "per_page", "value": "20"},
+								{"key": "category", "value": "1", "disabled": true},
+								{"key": "search", "value": "áo", "disabled": true},
+								{"key": "sort", "value": "gia", "disabled": true},
+								{"key": "order", "value": "ASC", "disabled": true}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET Product by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/products/1"
+					}
+				},
+				{
+					"name": "GET Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/products/categories"
+					}
+				},
+				{
+					"name": "POST Create Product (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ma_san_pham\": \"SP001\",\n  \"ten_san_pham\": \"Áo Sơ Mi Trắng\",\n  \"mo_ta\": \"Áo sơ mi trắng cao cấp\",\n  \"gia\": 299000,\n  \"so_luong\": 50,\n  \"danh_muc_id\": 1,\n  \"size\": \"S,M,L,XL\",\n  \"mau_sac\": \"Trắng,Xanh\"\n}"
+						},
+						"url": "{{base_url}}/products"
+					}
+				},
+				{
+					"name": "PUT Update Product (Admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"gia\": 249000,\n  \"so_luong\": 45\n}"
+						},
+						"url": "{{base_url}}/products/1"
+					}
+				},
+				{
+					"name": "DELETE Product (Admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/products/1"
+					}
+				}
+			]
+		},
+		{
+			"name": "2. User Management",
+			"item": [
+				{
+					"name": "POST Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ten_dang_nhap\": \"testuser\",\n  \"mat_khau\": \"password123\",\n  \"email\": \"test@example.com\",\n  \"ho_ten\": \"Nguyễn Văn A\",\n  \"sdt\": \"0901234567\"\n}"
+						},
+						"url": "{{base_url}}/users/register"
+					}
+				},
+				{
+					"name": "POST Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ten_dang_nhap\": \"testuser\",\n  \"mat_khau\": \"password123\"\n}"
+						},
+						"url": "{{base_url}}/users/login"
+					}
+				},
+				{
+					"name": "GET Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/users/profile"
+					}
+				},
+				{
+					"name": "PUT Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ho_ten\": \"Nguyễn Văn B\",\n  \"sdt\": \"0987654321\"\n}"
+						},
+						"url": "{{base_url}}/users/profile"
+					}
+				},
+				{
+					"name": "POST Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{base_url}}/users/logout"
+					}
+				}
+			]
+		},
+		{
+			"name": "3. Cart Management",
+			"item": [
+				{
+					"name": "GET Cart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/cart"
+					}
+				},
+				{
+					"name": "POST Add to Cart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"san_pham_id\": 1,\n  \"so_luong\": 2\n}"
+						},
+						"url": "{{base_url}}/cart"
+					}
+				},
+				{
+					"name": "PUT Update Cart Item",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"so_luong\": 3\n}"
+						},
+						"url": "{{base_url}}/cart/1"
+					}
+				},
+				{
+					"name": "DELETE Remove from Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/cart/1"
+					}
+				},
+				{
+					"name": "POST Checkout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"dia_chi\": \"123 Đường ABC, Quận 1, TP.HCM\",\n  \"sdt\": \"0901234567\",\n  \"phuong_thuc_thanh_toan\": \"COD\"\n}"
+						},
+						"url": "{{base_url}}/cart/checkout"
+					}
+				}
+			]
+		},
+		{
+			"name": "4. Order Management",
+			"item": [
+				{
+					"name": "GET All Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/orders?page=1",
+							"host": ["{{base_url}}"],
+							"path": ["orders"],
+							"query": [{"key": "page", "value": "1"}]
+						}
+					}
+				},
+				{
+					"name": "GET Order by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/orders/1"
+					}
+				},
+				{
+					"name": "POST Create Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"items\": [\n    {\"san_pham_id\": 1, \"so_luong\": 2}\n  ],\n  \"dia_chi\": \"123 Đường ABC\",\n  \"sdt\": \"0901234567\",\n  \"phuong_thuc_thanh_toan\": \"COD\"\n}"
+						},
+						"url": "{{base_url}}/orders"
+					}
+				},
+				{
+					"name": "PUT Update Order Status (Admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"trang_thai\": \"Đang giao\"\n}"
+						},
+						"url": "{{base_url}}/orders/1/status"
+					}
+				}
+			]
+		},
+		{
+			"name": "5. Payment Management",
+			"item": [
+				{
+					"name": "POST Create Payment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"don_hang_id\": 1,\n  \"phuong_thuc\": \"Chuyển khoản\",\n  \"so_tien\": 500000\n}"
+						},
+						"url": "{{base_url}}/payments"
+					}
+				},
+				{
+					"name": "GET Payment by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/payments/1"
+					}
+				},
+				{
+					"name": "POST Verify Payment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"payment_id\": 1,\n  \"ma_xac_nhan\": \"ABC123\"\n}"
+						},
+						"url": "{{base_url}}/payments/verify"
+					}
+				}
+			]
+		},
+		{
+			"name": "6. Discounts",
+			"item": [
+				{
+					"name": "GET All Discounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/discounts"
+					}
+				},
+				{
+					"name": "POST Apply Discount",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ma_giam_gia\": \"SALE20\",\n  \"tong_tien\": 500000\n}"
+						},
+						"url": "{{base_url}}/discounts/apply"
+					}
+				}
+			]
+		},
+		{
+			"name": "7. Reviews",
+			"item": [
+				{
+					"name": "GET Product Reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/reviews/1"
+					}
+				},
+				{
+					"name": "POST Add Review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rating\": 5,\n  \"comment\": \"Sản phẩm rất tốt!\"\n}"
+						},
+						"url": "{{base_url}}/reviews/1"
+					}
+				},
+				{
+					"name": "PUT Update Review",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rating\": 4,\n  \"comment\": \"Sản phẩm khá tốt!\"\n}"
+						},
+						"url": "{{base_url}}/reviews/1"
+					}
+				},
+				{
+					"name": "DELETE Review",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/reviews/1"
+					}
+				}
+			]
+		},
+		{
+			"name": "8. Shipping",
+			"item": [
+				{
+					"name": "GET Shipping Options",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/shipping/options"
+					}
+				},
+				{
+					"name": "POST Add Shipping Address",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"dia_chi\": \"456 Đường XYZ\",\n  \"thanh_pho\": \"TP.HCM\",\n  \"quan_huyen\": \"Quận 1\",\n  \"sdt\": \"0901234567\"\n}"
+						},
+						"url": "{{base_url}}/shipping/address"
+					}
+				},
+				{
+					"name": "POST Track Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"don_hang_id\": 1\n}"
+						},
+						"url": "{{base_url}}/shipping/tracking"
+					}
+				}
+			]
+		},
+		{
+			"name": "9. Notifications",
+			"item": [
+				{
+					"name": "GET Notifications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/notifications"
+					}
+				},
+				{
+					"name": "POST Send Notification (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"type\": \"announcement\",\n  \"title\": \"Thông báo mới\",\n  \"message\": \"Có sản phẩm mới!\",\n  \"link\": \"/products\"\n}"
+						},
+						"url": "{{base_url}}/notifications"
+					}
+				}
+			]
+		},
+		{
+			"name": "10. Analytics (Admin)",
+			"item": [
+				{
+					"name": "GET Sales Analytics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/analytics/sales?from=2025-01-01&to=2025-12-31",
+							"host": ["{{base_url}}"],
+							"path": ["analytics", "sales"],
+							"query": [
+								{"key": "from", "value": "2025-01-01"},
+								{"key": "to", "value": "2025-12-31"}
+							]
+						}
+					}
+				},
+				{
+					"name": "GET Product Analytics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/analytics/products?limit=10",
+							"host": ["{{base_url}}"],
+							"path": ["analytics", "products"],
+							"query": [{"key": "limit", "value": "10"}]
+						}
+					}
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,50 @@
+/* notification_bell.css - Style cho notification bell mới */
+.notification-bell {
+  position: relative;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 22px;
+  margin-left: 8px;
+}
+.notification-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #e74c3c;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  display: none;
+  z-index: 2;
+}
+.notification-list-simple {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  min-width: 320px;
+  max-width: 90vw;
+  max-height: 400px;
+  overflow: auto;
+  padding: 0.5rem;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  z-index: 9999;
+}
+.notification-item-simple {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+.notification-item-simple:last-child {
+  border-bottom: none;
+}
+.notification-empty {
+  color: #aaa;
+  text-align: center;
+  padding: 16px 0;
+}

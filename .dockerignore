@@ -1,0 +1,16 @@
+# Ignore các file không cần thiết trong Docker image
+.git
+.gitignore
+*.md
+!README.md
+.vscode
+.idea
+*.log
+*.tmp
+*.bak
+*.old
+node_modules
+vendor/bin
+composer.lock
+ban_hang_export_*.sql
+!ban_hang_export_20251207_195605.sql

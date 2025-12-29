@@ -1,0 +1,35 @@
+# Development files
+_dev_files/
+*.old
+*.bak
+*.tmp
+*~
+*.backup
+
+# Logs
+*.log
+/tmp/
+
+# Vendor
+/vendor/
+
+# Uploads (nên ignore nếu là file lớn, hoặc có thể commit mẫu)
+# /uploads/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Sensitive
+/google-login/config.php
+connect.php
+
+# Database dumps (giữ file chính, bỏ backup)
+ban_hang*.sql
+!ban_hang\ \(4\).sql
